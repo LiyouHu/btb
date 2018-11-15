@@ -1,0 +1,10 @@
+[
+		{ "id":"21", "pId":"0", "name":"权限管理"},
+		{ "id":"211", "pId":"21", "name":"功能权限",  "page":"function-list"},
+		{ "id":"212", "pId":"21", "name":"角色管理",  "page":"role-list"},
+		{ "id":"22", "pId":"0", "name":"订单流程"},
+		{ "id":"221", "pId":"22", "name":"发布新流程","page":"/processDefinition/list"},
+		{ "id":"222", "pId":"22", "name":"查看正在运行的流程","page":"/processInstance/list"}
+	
+		
+]

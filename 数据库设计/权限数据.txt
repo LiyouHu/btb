@@ -1,0 +1,12 @@
+INSERT INTO auth_function(id,name,code,description,page,generatemenu,zindex,pid) value('11','商品管理','shangpinguanli','','','1',0,null);
+INSERT INTO auth_function(id,name,code,description,page,generatemenu,zindex,pid) value('112','添加商品','tianjiashangpin','','item-add','1',1,'11');
+INSERT INTO auth_function(id,name,code,description,page,generatemenu,zindex,pid) value('113','查询商品','tianjiashangpin','','item-list','1',2,'11');
+INSERT INTO auth_function(id,name,code,description,page,generatemenu,zindex,pid) value('114','商品分类','shangpinfenlei','','item-category','1',3,'11');
+INSERT INTO auth_function(id,name,code,description,page,generatemenu,zindex,pid) value('12','雇员管理','guyuanguanli','','','1',1,null);
+INSERT INTO auth_function(id,name,code,description,page,generatemenu,zindex,pid) value('121','雇员设置','guyuanshezhi','','emp-list','1',0,'12');
+INSERT INTO auth_function(id,name,code,description,page,generatemenu,zindex,pid) value('122','雇员组管理','guyuanzuguanli','','emp-group','1',1,'12');
+INSERT INTO auth_function(id,name,code,description,page,generatemenu,zindex,pid) value('13','客户管理','kehuguanli','','','1',2,null);
+INSERT INTO auth_function(id,name,code,description,page,generatemenu,zindex,pid) value('131','查询客户','chaxunkehu','','user-list','1',0,'13');
+
+
+

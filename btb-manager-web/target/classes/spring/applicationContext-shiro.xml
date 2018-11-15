@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.2.xsd 
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	">
+	
+	<!-- 自定义realm -->
+	<bean id="btbRealm" class="com.btb.shiro.BtbRealm"></bean>
+	
+	<!-- ehcache缓存管理器 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<!-- 加载配置文件 -->
+		<property name="cacheManagerConfigFile" value="classpath:spring/ehcache.xml"></property>
+		
+	</bean>
+	
+	<!-- 安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- 注入realm -->
+		<property name="realm" ref="btbRealm"></property>
+		<!-- 注入缓存管理器 -->
+		<property name="cacheManager" ref="cacheManager"></property>
+	</bean>
+	
+	<!-- 配置一个工厂bean，用于创建shiro框架用到的过滤器 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- shiro核心的安全接口 -->
+		<property name="securityManager" ref="securityManager"></property>
+		<!-- 要求登录时的链接 -->
+		<property name="loginUrl" value="/login.html"/>
+		<!-- 登录成功是跳转的链接 -->
+		<property name="successUrl" value="/index.html"/>
+		<!-- 未授权时要跳转的链接 -->
+		<property name="unauthorizedUrl" value="/unauthorizedUrl.html"/>
+		<!-- 注入url拦截规则 -->
+		<property name="filterChainDefinitions">
+			<value>
+				/css/** = anon
+				/images/** = anon
+				/js/** = anon
+				/login* = anon
+				/unauthorizedUrl.jsp* = anon
+				/captcha = anon		<!-- 验证码请求不拦截 -->
+
+				/emp/login = anon
+<!-- 				/item-add = roles["yewuyuan"]	添加角色 -->
+				/* = authc
+			</value>
+		</property>
+	</bean>
+	
+	
+	
+   
+    
+</beans>

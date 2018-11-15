@@ -1,0 +1,8 @@
+com\btb\mapper\EmpMapper.class
+com\btb\mapper\ItemCategoryMapper.class
+com\btb\mapper\EmpGroupMapper.class
+com\btb\mapper\OrderDetailsMapper.class
+com\btb\mapper\OrdersMapper.class
+com\btb\mapper\ItemDescMapper.class
+com\btb\mapper\UserMapper.class
+com\btb\mapper\ItemMapper.class

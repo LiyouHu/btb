@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="order_process" name="订单流程" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <exclusiveGateway id="checkYesOrNo" name="Exclusive Gateway"></exclusiveGateway>
+    <userTask id="collectItem" name="商品配货" activiti:candidateGroups="仓库组"></userTask>
+    <userTask id="itemTransfer" name="货物配送" activiti:candidateGroups="配送组"></userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow6" sourceRef="collectItem" targetRef="itemTransfer"></sequenceFlow>
+    <userTask id="checkOrder" name="审核订单" activiti:candidateGroups="业务组"></userTask>
+    <sequenceFlow id="flow9" sourceRef="startevent1" targetRef="checkOrder"></sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="checkOrder" targetRef="checkYesOrNo"></sequenceFlow>
+    <sequenceFlow id="flow11" sourceRef="checkYesOrNo" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${check!=true}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow12" sourceRef="checkYesOrNo" targetRef="collectItem">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${check==true}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="userReceive" name="货物签收" activiti:candidateGroups="配送组"></userTask>
+    <sequenceFlow id="flow13" sourceRef="itemTransfer" targetRef="userReceive"></sequenceFlow>
+    <sequenceFlow id="flow14" sourceRef="userReceive" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_order_process">
+    <bpmndi:BPMNPlane bpmnElement="order_process" id="BPMNPlane_order_process">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="56.0" y="268.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="checkYesOrNo" id="BPMNShape_checkYesOrNo">
+        <omgdc:Bounds height="40.0" width="40.0" x="346.0" y="265.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="collectItem" id="BPMNShape_collectItem">
+        <omgdc:Bounds height="55.0" width="105.0" x="456.0" y="340.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="itemTransfer" id="BPMNShape_itemTransfer">
+        <omgdc:Bounds height="55.0" width="105.0" x="700.0" y="340.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1106.0" y="268.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="checkOrder" id="BPMNShape_checkOrder">
+        <omgdc:Bounds height="55.0" width="105.0" x="166.0" y="258.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="userReceive" id="BPMNShape_userReceive">
+        <omgdc:Bounds height="55.0" width="105.0" x="916.0" y="340.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="561.0" y="367.0"></omgdi:waypoint>
+        <omgdi:waypoint x="700.0" y="367.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="91.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="166.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="271.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="346.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="366.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="366.0" y="196.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1123.0" y="196.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1123.0" y="268.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="366.0" y="305.0"></omgdi:waypoint>
+        <omgdi:waypoint x="366.0" y="367.0"></omgdi:waypoint>
+        <omgdi:waypoint x="456.0" y="367.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="805.0" y="367.0"></omgdi:waypoint>
+        <omgdi:waypoint x="916.0" y="367.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="1021.0" y="367.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1123.0" y="367.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1123.0" y="303.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

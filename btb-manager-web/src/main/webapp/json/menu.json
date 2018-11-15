@@ -1,0 +1,13 @@
+[
+		{ "id":"11", "pId":"0", "name":"商品管理"},
+		{ "id":"112", "pId":"11", "name":"添加商品",  "page":"item-add"},
+		{ "id":"113", "pId":"11", "name":"查询商品","page":"item-list"},
+		{ "id":"114", "pId":"11", "name":"商品分类","page":"item-category"},
+
+		{ "id":"12", "pId":"0", "name":"雇员管理"},
+		{ "id":"121", "pId":"12", "name":"雇员管理" ,"page":"emp-list"},
+		{ "id":"122", "pId":"12", "name":"雇员组管理" ,"page":"emp-group"},
+		{ "id":"13", "pId":"0", "name":"客户管理"},
+		{ "id":"131", "pId":"13", "name":"查询客户" ,"page":"user-list"}
+		
+]
